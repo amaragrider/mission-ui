@@ -1,0 +1,22 @@
+<section>
+  <h2>Holdings</h2>
+  @for (holding of holdings(); track holding.ticker) {
+    <div>
+      <span>{{ holding.ticker }} - {{ holding.quantity }} @ {{ holding.price | number: '1.2-2' }}</span>
+      <button type="button" (click)="removeHolding(holding.ticker)">Remove</button>
+    </div>
+  } @empty {
+    <p>No holdings.</p>
+  }
+  <p>Total Value: {{ totalValue() | number: '1.2-2' }}</p>
+  <button type="button" (click)="addHolding()">Add</button>
+  <button type="button" (click)="loadFromApi('http://localhost:3500/api/holdings')">
+    Load From API
+  </button>
+  <button type="button" (click)="loadFromApi('http://localhost:3500/api/holdings/error')">
+    Load Error
+  </button>
+  @if (loadError(); as error) {
+    <p>{{ error }}</p>
+  }
+</section>
