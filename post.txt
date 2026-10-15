@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri "http://localhost:3000/auth/register" -Method Post -ContentType "application/json" -Body '{"username":"alice","password":"mission123"}'
